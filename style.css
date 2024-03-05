@@ -1,0 +1,209 @@
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&family=Russo+One&family=Scada:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --clr-accent: #dcac7f;
+    --clr-bg: #1e2733;
+    --clr-comp: #496c88;
+    --clr-int: #7ca296;
+    --clr-err: #a06a77;
+    --clr-vis: #514257;
+    --clr-txt: #0a0b0c;
+    --clr-bother: #423834;
+    --clr-pure: #e3ddce;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    writing-mode: vertical-lr;
+}
+
+a:link {
+    color: var(--clr-int);
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--clr-vis);
+}
+
+body {
+    display: flex;
+    height: 100%;
+    flex-flow: column nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+    color: var(--clr-text);
+    background-color: var(--clr-pure);
+    font-family: "Noto Sans", sans-serif;
+    writing-mode: horizontal-tb;
+}
+
+/* HEADER */
+header {
+    background-color: var(--clr-accent);
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline-start: 1em;
+    height: 7vh;
+}
+
+header > h1 {
+    font-family: "Russo One", sans-serif;
+    font-size: 3.35vh;
+    color: var(--clr-pure);
+    text-shadow: 0.15ch 0.15ch color-mix(in oklab, var(--clr-accent), var(--clr-bother));
+}
+
+header ul {
+    display: flex;
+}
+
+header ul > li {
+    display: inline-block;
+}
+
+header a {
+    background-color: var(--clr-int);
+    line-height: 7vh;
+    display: inline-block;
+    padding-inline: 1ch;
+}
+
+header a:link {
+    color: var(--clr-pure);
+}
+
+header a:visited {
+    color: var(--clr-pure);
+}
+
+header a.current-page {
+    background-color: color-mix(in oklab, var(--clr-int) 90%, #121);
+    border-inline-start: 1ch solid color-mix(in oklab, var(--clr-int) 70%, #121);
+}
+
+header ul > li:last-child > a {
+    padding-inline-end: 1em;
+}
+
+main {
+    margin: 1vw;
+    height: fit-content;
+    min-height: 80vh;
+    /* Without it footer is wacky */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+
+footer {
+    background-color: var(--clr-bother);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    height: 6.5vh;
+}
+
+footer > address {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    gap: 1em;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+article {
+    max-width: 68ch;
+    animation: article-folds-out 1s;
+}
+
+article > section {
+    background: color-mix(in oklab, var(--clr-accent), var(--clr-pure));
+    border: 6px solid var(--clr-accent);
+    padding: 1em;
+    height: fit-content;
+    min-height: 100%;
+}
+
+article:not(:has(section)) {
+    background: color-mix(in oklab, var(--clr-accent), var(--clr-pure));
+    border: 6px solid var(--clr-accent);
+    padding: 1em;
+}
+
+article:has(> *:first-child:is(h1)) > section {
+    border-block-start: none;
+    padding-block-start: 0.5em;
+    min-height: calc(100% - 50px);
+}
+
+article:has(> *:first-child:is(h1)) > h1 {
+    max-height: 50px;
+    line-height: 50px;
+    padding-inline-start: 1em;
+    font-family: "Russo One", sans-serif;
+    font-size: 3vh;
+    color: var(--clr-pure);
+    text-shadow: .18ch .18ch color-mix(in oklab, var(--clr-int), var(--clr-bother));
+    overflow: auto;
+    display: block;
+    background-color: var(--clr-int);
+}
+
+@keyframes article-folds-out {
+    0% {}
+
+    100% {}
+}
+
+.main-container {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    height: fit-content;
+    min-height: 100%;
+}
+
+/* Style the tab */
+.tab {
+    overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    border: none;
+    font-size: 1.2em;
+    background-color: color-mix(in oklab, var(--clr-accent) 85%, var(--clr-err));
+    height: 50px;
+    width: 90%;
+    transition: 0.5s;
+}
+
+.tab button.active {
+    background-color: var(--clr-accent);
+    width: 100%;
+}
+
+.main-container:has(.tabcontent-display *:first-child:is(h1)) .tab button.active {
+    background-color: var(--clr-int);
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+}
+
+.tabcontent-display {
+    display: block;
+}
