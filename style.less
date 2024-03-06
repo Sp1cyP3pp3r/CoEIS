@@ -157,7 +157,17 @@ article:has(> *:first-child:is(h1)) > h1 {
     text-shadow: .18ch .18ch color-mix(in oklab, var(--clr-int), var(--clr-bother));
     overflow: auto;
     display: block;
-    background-color: var(--clr-int);
+    background-color: var(--h1-bg);
+}
+
+#Агония,
+button[onClick*="Агония"] {
+    --h1-bg: var(--clr-err)
+}
+
+#Main,
+button[onClick*="Main"] {
+    --h1-bg: var(--clr-int)
 }
 
 @keyframes article-folds-out {
@@ -171,6 +181,7 @@ article:has(> *:first-child:is(h1)) > h1 {
     flex-flow: row-reverse nowrap;
     height: fit-content;
     min-height: 100%;
+    --h1-bg: fuchsia;
 }
 
 article img {
@@ -179,7 +190,7 @@ article img {
     margin: 1em;
     margin-block-start: -3.5em;
     margin-inline-end: -1em;
-    border: 6px solid var(--clr-int);
+    border: 6px solid var(--h1-bg);
 }
 
 /* Style the tab */
@@ -191,21 +202,40 @@ article img {
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
+    /*
+    --button-color: color-mix(in oklab, var(--clr-accent) 85%, var(--clr-err));
+    */
+    --button-color: fuchsia;
     border: none;
     font-size: 1.2em;
-    background-color: color-mix(in oklab, var(--clr-accent) 85%, var(--clr-err));
     height: 50px;
-    width: 90%;
     transition: 0.5s;
+    text-overflow: ellipsis;
+    padding-inline-start: 0.5em;
+    box-shadow: 0 1mm 5px 0 color-mix(in oklab, var(--button-color), rgba(0, 0, 0, 0.5) 30%);
+    background-color: var(--button-color);
 }
 
+.tab (@indexstart, @index) when (@indexstart < @index ) {
+    button:nth-child(@{indexstart}) {
+        width: 100% - (@indexstart - 1) * 4%;
+        --button-color: color-mix(in oklab, var(--clr-accent), var(--clr-err) 0% + (@indexstart - 1) * 12.33%);
+        z-index: @index - @indexstart;
+    }
+
+    .tab (@indexstart + 1, @index);
+}
+
+.tab (1, 8);
+
 .tab button.active {
-    background-color: var(--clr-accent);
+    --button-color: var(--clr-accent);
     width: 100%;
+    padding-inline-start: 0;
 }
 
 .main-container:has(.tabcontent-display *:first-child:is(h1)) .tab button.active {
-    background-color: var(--clr-int);
+    --button-color: var(--h1-bg);
     color: var(--clr-pure);
 }
 
