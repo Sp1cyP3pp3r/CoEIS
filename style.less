@@ -158,6 +158,13 @@ article:has(> *:first-child:is(h1)) > h1 {
     overflow: auto;
     display: block;
     background-color: var(--h1-bg);
+    scrollbar-color: color-mix(in oklab, var(--h1-bg), black 10%) var(--h1-bg);
+}
+
+
+article:has(> *:first-child:is(h1)):has(img) > h1 {
+    padding-inline-end: 200px;
+    scrollbar-width: none;
 }
 
 #Агония,
@@ -209,7 +216,6 @@ article img {
     border: none;
     font-size: 1.2em;
     height: 50px;
-    transition: 0.5s;
     text-overflow: ellipsis;
     padding-inline-start: 0.5em;
     box-shadow: 0 1mm 5px 0 color-mix(in oklab, var(--button-color), rgba(0, 0, 0, 0.5) 30%);
