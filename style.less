@@ -60,6 +60,7 @@ header > h1 {
     text-shadow: 0.15ch 0.15ch color-mix(in oklab, var(--clr-accent), var(--clr-bother));
 }
 
+
 header ul {
     display: flex;
 }
@@ -104,6 +105,28 @@ main {
     justify-content: center;
 }
 
+@media only screen and (max-width: 1000px) {
+    main {
+        margin: 0 !important;
+    }
+
+    article {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .main-container {
+        flex-flow: column nowrap !important;
+    }
+
+    .tab {
+        flex-flow: row nowrap !important;
+    }
+
+    .tab button {
+        box-shadow: 1mm 0mm 5px 0 color-mix(in oklab, var(--button-color), rgba(0, 0, 0, 0.5) 30%) !important;
+    }
+}
 
 footer {
     background-color: var(--clr-bother);
